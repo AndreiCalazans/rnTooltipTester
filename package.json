@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "prettier": "prettier --write --single-quote true --trailing-comma all --print-width 100"
   },
   "dependencies": {
     "expo": "^33.0.0",
@@ -13,12 +14,14 @@
     "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
     "react-native-web": "^0.11.4",
-    "react-navigation": "^3.11.0"
+    "react-navigation": "^3.11.0",
+    "rn-tooltip": "file:../../projects/rn-tooltip"
   },
   "devDependencies": {
     "@types/react": "^16.8.19",
     "@types/react-native": "^0.57.60",
     "babel-preset-expo": "^5.1.1",
+    "prettier": "^1.18.2",
     "typescript": "^3.4.5"
   },
   "private": true

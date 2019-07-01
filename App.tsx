@@ -1,32 +1,271 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { createStackNavigator, createAppContainer, HeaderMode } from "react-navigation";
+import * as React from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Button,
+  SafeAreaView,
+  ScrollView,
+} from 'react-native';
+import {
+  createBottomTabNavigator,
+  createStackNavigator,
+  createAppContainer,
+  HeaderMode,
+} from 'react-navigation';
+import Tooltip from 'rn-tooltip';
 
-class HomeScreen extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Home Screen</Text>
+const BasicExample = () => {
+  return (
+    <View>
+      <Tooltip popover={<Text>Info Three</Text>}>
+        <Text>Press me</Text>
+      </Tooltip>
+    </View>
+  );
+};
+
+const RowOfTooltips = () => {
+  return (
+    <View style={styles.row}>
+      <BasicExample />
+      <BasicExample />
+      <BasicExample />
+    </View>
+  );
+};
+
+const MakeScreen = name => () => (
+  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text>{name}</Text>
+  </View>
+);
+
+const Header = ({ navigation }) => {
+  return (
+    <SafeAreaView style={styles.header}>
+      <TouchableOpacity onPress={() => navigation.goBack(null)}>
+        <Text>Go Back</Text>
+      </TouchableOpacity>
+      <View style={{ width: 80 }}>
+        <Tooltip popover={<Text>Something goes here</Text>}>
+          <Text>A Tooltip!</Text>
+        </Tooltip>
       </View>
-    );
-  }
-}
+    </SafeAreaView>
+  );
+};
+
+const TabsExample = createBottomTabNavigator(
+  {
+    FirstScreen: MakeScreen('First'),
+    SecondScreen: MakeScreen('Second'),
+  },
+  {
+    navigationOptions: {
+      header: props => <Header {...props} />,
+      headerStyle: {
+        backgroundColor: 'transparent',
+      },
+    },
+  },
+);
+
+const InsideScrollExample = ({ navigation }) => {
+  return (
+    <SafeAreaView style={styles.allOverContainer}>
+      <ScrollView>
+        <View style={[styles.row, { alignItems: 'stretch' }]}>
+          <Tooltip
+            highlightColor="blue"
+            height={250}
+            withOverlay
+            popover={
+              <Text>
+                Note that the tooltip wraps the parent View. This is because it takes the
+                measurement from the parent. Also it's not smart enought to grow based on the size
+                of the text, you have to imperatively add width and height
+              </Text>
+            }
+          >
+            <Text>Big Text</Text>
+          </Tooltip>
+          <View>
+            <Tooltip highlightColor="yellow" popover={<Text>Info Two</Text>}>
+              <Text>Smaller parent</Text>
+            </Tooltip>
+          </View>
+          <View>
+            <Tooltip popover={<Text>Info Three</Text>}>
+              <Text>Press me</Text>
+            </Tooltip>
+          </View>
+        </View>
+        <View style={{ width: 100, backgroundColor: 'red' }}>
+          <Tooltip overlayColor="lightpink" withOverlay popover={<Text>Info Three</Text>}>
+            <Text>With overlay</Text>
+          </Tooltip>
+        </View>
+        <RowOfTooltips />
+        <RowOfTooltips />
+        <RowOfTooltips />
+        <RowOfTooltips />
+        <RowOfTooltips />
+        <RowOfTooltips />
+        <RowOfTooltips />
+        <Button title="Go Back" onPress={() => navigation.goBack(null)} />
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
+
+const AllOver = ({ navigation }) => {
+  return (
+    <SafeAreaView style={styles.allOverContainer}>
+      <View style={[styles.row, { alignItems: 'stretch' }]}>
+        <Tooltip
+          highlightColor="blue"
+          height={250}
+          withOverlay
+          popover={
+            <Text>
+              Note that the tooltip wraps the parent View. This is because it takes the measurement
+              from the parent. Also it's not smart enought to grow based on the size of the text,
+              you have to imperatively add width and height
+            </Text>
+          }
+        >
+          <Text>Big Text</Text>
+        </Tooltip>
+        <View>
+          <Tooltip highlightColor="yellow" popover={<Text>Info Two</Text>}>
+            <Text>Smaller parent</Text>
+          </Tooltip>
+        </View>
+        <BasicExample />
+      </View>
+      <View style={styles.row}>
+        <View>
+          <Tooltip overlayColor="lightpink" withOverlay popover={<Text>Info Three</Text>}>
+            <Text>With overlay</Text>
+          </Tooltip>
+        </View>
+        <BasicExample />
+        <BasicExample />
+      </View>
+      <RowOfTooltips />
+      <Button title="Go Back" onPress={() => navigation.goBack(null)} />
+    </SafeAreaView>
+  );
+};
+
+const Showcase = ({ title, description, onPress }) => {
+  return (
+    <View style={styles.showcaseBox}>
+      <TouchableOpacity activeOpacity={0.6} onPress={onPress}>
+        <React.Fragment>
+          <Text style={styles.showcaseTitle}>{title}</Text>
+          <Text style={styles.showcaseDescription}>{description}</Text>
+        </React.Fragment>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const HomeScreen = ({ navigation }) => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>React Native Tooltip Showcase App</Text>
+      <Showcase
+        onPress={() => navigation.navigate('InScroll')}
+        title="Inside ScrollView"
+        description="Example displaying how the tooltip behaves inside a scrollview."
+      />
+      <Showcase
+        onPress={() => navigation.navigate('Tabs')}
+        title="With Tabs"
+        description="rn-tooltip usage inside tab screens, in the bottom tab and header."
+      />
+      <Showcase
+        onPress={() => navigation.navigate('AllOver')}
+        title="All Directions"
+        description="In this example we render multiple tooltips in different places to display how it behaves"
+      />
+    </View>
+  );
+};
 
 const navigatorConfig = {
-  headerMode: 'none' as HeaderMode
-}
+  headerMode: 'none' as HeaderMode,
+};
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen
-  }
-}, navigatorConfig);
+const AppNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
+    },
+    InScroll: {
+      screen: InsideScrollExample,
+    },
+    Tabs: {
+      screen: createStackNavigator({ TabsExample }), // Hack so we can have a Header
+    },
+    AllOver: {
+      screen: AllOver,
+    },
+  },
+  navigatorConfig,
+);
 
 export default createAppContainer(AppNavigator);
 
-
 const styles = StyleSheet.create({
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    height: 90,
+    backgroundColor: 'yellow',
+  },
+  allOverContainer: {
+    margin: 20,
+    flexGrow: 1,
+    backgroundColor: '#fff',
+  },
+  row: {
+    alignItems: 'center',
+    height: 200,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  showcaseBox: {
+    alignItems: 'center',
+    backgroundColor: '#fafafa',
+    margin: 30,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.53,
+    shadowRadius: 13.97,
+    elevation: 21,
+  },
+  showcaseTitle: {
+    fontSize: 18,
+  },
+  showcaseDescription: {
+    fontSize: 14,
+    color: '#333',
+  },
+  title: {
+    fontSize: 28,
+  },
   container: {
+    padding: 20,
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
