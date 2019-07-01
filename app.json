@@ -25,6 +25,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "Testing App for rn-tooltip | Serves as a QA app.",
+    "githubUrl": "https://github.com/AndreiCalazans/rnTooltipTester"
   }
 }

@@ -63,6 +63,7 @@ const TabsExample = createBottomTabNavigator(
     SecondScreen: MakeScreen('Second'),
   },
   {
+    backBehavior: 'none',
     navigationOptions: {
       header: props => <Header {...props} />,
       headerStyle: {
@@ -75,8 +76,8 @@ const TabsExample = createBottomTabNavigator(
 const InsideScrollExample = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.allOverContainer}>
-      <ScrollView>
-        <View style={[styles.row, { alignItems: 'stretch' }]}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={[styles.row, { alignItems: 'stretch', marginTop: 50 }]}>
           <Tooltip
             highlightColor="blue"
             height={250}
@@ -114,8 +115,10 @@ const InsideScrollExample = ({ navigation }) => {
         <RowOfTooltips />
         <RowOfTooltips />
         <RowOfTooltips />
-        <Button title="Go Back" onPress={() => navigation.goBack(null)} />
       </ScrollView>
+      <View style={styles.goBack}>
+        <Button title="Go Back" onPress={() => navigation.goBack(null)} />
+      </View>
     </SafeAreaView>
   );
 };
@@ -175,7 +178,7 @@ const Showcase = ({ title, description, onPress }) => {
 
 const HomeScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>React Native Tooltip Showcase App</Text>
       <Showcase
         onPress={() => navigation.navigate('InScroll')}
@@ -192,7 +195,7 @@ const HomeScreen = ({ navigation }) => {
         title="All Directions"
         description="In this example we render multiple tooltips in different places to display how it behaves"
       />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -222,6 +225,7 @@ export default createAppContainer(AppNavigator);
 
 const styles = StyleSheet.create({
   header: {
+    padding: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
@@ -235,7 +239,7 @@ const styles = StyleSheet.create({
   },
   row: {
     alignItems: 'center',
-    height: 200,
+    height: 150,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -271,4 +275,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  goBack: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0
+  }
 });
