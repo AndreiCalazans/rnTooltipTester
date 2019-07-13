@@ -126,6 +126,11 @@ const InsideScrollExample = ({ navigation }) => {
 const AllOver = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.allOverContainer}>
+      <View style={{ height: 100, justifyContent: 'center', width: 100 }}>
+        <Tooltip width='80%' highlightColor="yellow" popover={<Text>Width as percent was broken before</Text>}>
+          <Text>Width as percent</Text>
+        </Tooltip>
+      </View>
       <View style={[styles.row, { alignItems: 'stretch' }]}>
         <Tooltip
           highlightColor="blue"
