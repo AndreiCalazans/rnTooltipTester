@@ -159,8 +159,34 @@ const AllOver = ({ navigation }) => {
             <Text>With overlay</Text>
           </Tooltip>
         </View>
-        <BasicExample />
-        <BasicExample />
+
+        <View>
+          <Tooltip height={200} width={300} popover={
+            <ScrollView style={{ width: 300, height: 200}}>
+              <View onStartShouldSetResponder={() => true}>
+              <Text>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
+              </Text>
+              <Text>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
+              </Text>
+              <Text>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
+              </Text>
+              <Text>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
+              </Text>
+              <Text>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
+              </Text>
+
+              </View>
+            </ScrollView>
+
+          }>
+            <Text>Large text with scroll</Text>
+          </Tooltip>
+        </View>
       </View>
       <RowOfTooltips />
       <Button title="Go Back" onPress={() => navigation.goBack(null)} />
