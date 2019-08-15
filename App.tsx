@@ -127,7 +127,11 @@ const AllOver = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.allOverContainer}>
       <View style={{ height: 100, justifyContent: 'center', width: 100 }}>
-        <Tooltip width='80%' highlightColor="yellow" popover={<Text>Width as percent was broken before</Text>}>
+        <Tooltip
+          width="80%"
+          highlightColor="yellow"
+          popover={<Text>Width as percent was broken before</Text>}
+        >
           <Text>Width as percent</Text>
         </Tooltip>
       </View>
@@ -155,35 +159,59 @@ const AllOver = ({ navigation }) => {
       </View>
       <View style={styles.row}>
         <View>
-          <Tooltip overlayColor="lightpink" withOverlay popover={<Text>Info Three</Text>}>
-            <Text>With overlay</Text>
+          <Tooltip
+            toggleWrapperProps={{
+              hitSlop: {
+                top: 40,
+                left: 20,
+                bottom: 40,
+                right: 20,
+              },
+            }}
+            overlayColor="lightpink"
+            withOverlay
+            popover={<Text>Info Three</Text>}
+          >
+            <Text>Improve hit slop example</Text>
           </Tooltip>
         </View>
 
         <View>
-          <Tooltip height={200} width={300} popover={
-            <ScrollView style={{ width: 300, height: 200}}>
-              <View onStartShouldSetResponder={() => true}>
-              <Text>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
-              </Text>
-              <Text>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
-              </Text>
-              <Text>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
-              </Text>
-              <Text>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
-              </Text>
-              <Text>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
-              </Text>
-
-              </View>
-            </ScrollView>
-
-          }>
+          <Tooltip
+            height={200}
+            width={300}
+            popover={
+              <ScrollView style={{ width: 300, height: 200 }}>
+                <View onStartShouldSetResponder={() => true}>
+                  <Text>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia
+                    tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga
+                    quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
+                  </Text>
+                  <Text>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia
+                    tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga
+                    quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
+                  </Text>
+                  <Text>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia
+                    tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga
+                    quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
+                  </Text>
+                  <Text>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia
+                    tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga
+                    quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
+                  </Text>
+                  <Text>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quia
+                    tenetur tempora quibusdam cupiditate non architecto deserunt amet, ipsam fuga
+                    quae maxime suscipit dignissimos, dicta minus sit commodi eius quod.
+                  </Text>
+                </View>
+              </ScrollView>
+            }
+          >
             <Text>Large text with scroll</Text>
           </Tooltip>
         </View>
@@ -310,6 +338,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     left: 0,
-    right: 0
-  }
+    right: 0,
+  },
 });
