@@ -3,7 +3,6 @@
     "name": "rnTooltipTester",
     "slug": "RNTooltipTester",
     "privacy": "public",
-    "sdkVersion": "33.0.0",
     "platforms": [
       "ios",
       "android",

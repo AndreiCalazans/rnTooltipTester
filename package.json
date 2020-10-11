@@ -9,20 +9,27 @@
     "prettier": "prettier --write --single-quote true --trailing-comma all --print-width 100"
   },
   "dependencies": {
-    "expo": "^33.0.0",
-    "react": "16.8.3",
-    "react-dom": "^16.8.6",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
-    "react-native-web": "^0.11.4",
-    "react-navigation": "^3.11.0",
-    "rn-tooltip": "file:../../projects/rn-tooltip"
+    "@react-native-community/masked-view": "0.1.10",
+    "@react-navigation/bottom-tabs": "^5.9.2",
+    "@react-navigation/native": "^5.7.6",
+    "@react-navigation/stack": "^5.9.3",
+    "expo": "^39.0.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.3.tar.gz",
+    "react-native-gesture-handler": "~1.7.0",
+    "react-native-reanimated": "~1.13.0",
+    "react-native-safe-area-context": "3.1.4",
+    "react-native-screens": "~2.10.1",
+    "react-native-web": "~0.13.7",
+    "rn-tooltip": "file:../rn-tooltip"
   },
   "devDependencies": {
-    "@types/react": "^16.8.19",
-    "@types/react-native": "^0.57.60",
-    "babel-preset-expo": "^5.1.1",
+    "@types/react": "~16.9.35",
+    "@types/react-native": "~0.63.2",
+    "babel-preset-expo": "^8.3.0",
     "prettier": "^1.18.2",
-    "typescript": "^3.4.5"
+    "typescript": "~3.9.2"
   },
   "private": true
 }

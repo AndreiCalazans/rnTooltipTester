@@ -8,12 +8,17 @@ import {
   SafeAreaView,
   ScrollView,
 } from 'react-native';
-import {
-  createBottomTabNavigator,
-  createStackNavigator,
-  createAppContainer,
-  HeaderMode,
-} from 'react-navigation';
+/* import { */
+/*   createBottomTabNavigator, */
+/*   createStackNavigator, */
+/*   createAppContainer, */
+/*   HeaderMode, */
+/* } from 'react-navigation'; */
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import Tooltip from 'rn-tooltip';
 
 const BasicExample = () => {
@@ -57,21 +62,16 @@ const Header = ({ navigation }) => {
   );
 };
 
-const TabsExample = createBottomTabNavigator(
-  {
-    FirstScreen: MakeScreen('First'),
-    SecondScreen: MakeScreen('Second'),
-  },
-  {
-    backBehavior: 'none',
-    navigationOptions: {
-      header: props => <Header {...props} />,
-      headerStyle: {
-        backgroundColor: 'transparent',
-      },
-    },
-  },
-);
+const Tab = createBottomTabNavigator();
+
+function Tabs() {
+  return (
+    <Tab.Navigator backBehavior="none">
+      <Tab.Screen name="FirstScreen" component={MakeScreen('First')} />
+      <Tab.Screen name="SecondScreen" component={MakeScreen('Second')} />
+    </Tab.Navigator>
+  );
+}
 
 const InsideScrollExample = ({ navigation }) => {
   return (
@@ -258,29 +258,22 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-const navigatorConfig = {
-  headerMode: 'none' as HeaderMode,
-};
+const Stack = createStackNavigator();
 
-const AppNavigator = createStackNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-    },
-    InScroll: {
-      screen: InsideScrollExample,
-    },
-    Tabs: {
-      screen: createStackNavigator({ TabsExample }), // Hack so we can have a Header
-    },
-    AllOver: {
-      screen: AllOver,
-    },
-  },
-  navigatorConfig,
-);
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="InScroll" component={InsideScrollExample} />
+        <Stack.Screen name="Tabs" component={Tabs} />
+        <Stack.Screen name="AllOver" component={AllOver} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
-export default createAppContainer(AppNavigator);
+export default App;
 
 const styles = StyleSheet.create({
   header: {
@@ -294,7 +287,6 @@ const styles = StyleSheet.create({
   allOverContainer: {
     margin: 20,
     flexGrow: 1,
-    backgroundColor: '#fff',
   },
   row: {
     alignItems: 'center',
@@ -305,7 +297,6 @@ const styles = StyleSheet.create({
   },
   showcaseBox: {
     alignItems: 'center',
-    backgroundColor: '#fafafa',
     margin: 30,
     padding: 20,
     shadowColor: '#000',
@@ -330,7 +321,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
