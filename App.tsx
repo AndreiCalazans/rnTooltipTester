@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Button,
   SafeAreaView,
-  ScrollView,
+  ScrollView
 } from "react-native";
 /* import { */
 /*   createBottomTabNavigator, */
@@ -41,9 +41,12 @@ const RowOfTooltips = () => {
   );
 };
 
-const MakeScreen = (name) => () => (
+const MakeScreen = name => () => (
   <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
     <Text>{name}</Text>
+    <Tooltip popover={<Text>{name}</Text>}>
+      <Text>Tooltip test</Text>
+    </Tooltip>
   </View>
 );
 
@@ -175,8 +178,8 @@ const AllOver = ({ navigation }) => {
                 top: 40,
                 left: 20,
                 bottom: 40,
-                right: 20,
-              },
+                right: 20
+              }
             }}
             overlayColor="lightpink"
             withOverlay
@@ -288,8 +291,8 @@ const WithAutoHeight = ({ navigation }) => {
                 top: 40,
                 left: 20,
                 bottom: 40,
-                right: 20,
-              },
+                right: 20
+              }
             }}
             overlayColor="lightpink"
             withOverlay
@@ -353,7 +356,11 @@ const WithAutoHeight = ({ navigation }) => {
 const Showcase = ({ title, description, onPress }) => {
   return (
     <View style={styles.showcaseBox}>
-      <TouchableOpacity activeOpacity={0.6} onPress={onPress} style={{ width: '100%' }}>
+      <TouchableOpacity
+        activeOpacity={0.6}
+        onPress={onPress}
+        style={{ width: "100%" }}
+      >
         <React.Fragment>
           <Text style={styles.showcaseTitle}>{title}</Text>
           <Text style={styles.showcaseDescription}>{description}</Text>
@@ -416,18 +423,18 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "100%",
     height: 90,
-    backgroundColor: "yellow",
+    backgroundColor: "yellow"
   },
   allOverContainer: {
     margin: 20,
-    flexGrow: 1,
+    flexGrow: 1
   },
   row: {
     alignItems: "center",
     height: 150,
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   showcaseBox: {
     alignItems: "center",
@@ -436,31 +443,31 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 10
     },
     shadowOpacity: 0.53,
     shadowRadius: 13.97,
-    elevation: 21,
+    elevation: 21
   },
   showcaseTitle: {
-    fontSize: 18,
+    fontSize: 18
   },
   showcaseDescription: {
     fontSize: 14,
-    color: "#333",
+    color: "#333"
   },
   title: {
-    fontSize: 28,
+    fontSize: 28
   },
   container: {
     padding: 20,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   goBack: {
     position: "absolute",
     bottom: 0,
     left: 0,
-    right: 0,
-  },
+    right: 0
+  }
 });
